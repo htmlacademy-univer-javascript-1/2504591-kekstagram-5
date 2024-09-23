@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Евгений Кузнецов](https://up.htmlacademy.ru/univer-js1/5/user/2504591).
-* Наставник: `Неизвестно`.
+* Наставник: [Евгений Лепешкин](https://htmlacademy.ru/profile/spearance).
 
 ---
 
