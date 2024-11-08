@@ -1,4 +1,4 @@
-import {getRandomInteger,createRandomIdFromRangeGenerator,createRandomComment} from './util';
+import {getRandomInteger,createRandomIdFromRangeGenerator,createRandomComment} from './util.js';
 
 const description = [
   'Анапа 2008',
