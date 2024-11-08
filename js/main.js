@@ -1,2 +1,2 @@
-import {result} from './data';
+import {result} from './data.js';
 result();
