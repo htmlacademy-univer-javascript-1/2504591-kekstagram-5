@@ -48,4 +48,9 @@ function createRandomComment (names,messages) {
   return comments;
 }
 
-export {getRandomInteger,createRandomIdFromRangeGenerator,createRandomComment};
+function onEscapePress(evt, funcName){
+  if(evt.key === 'Escape'){
+    funcName();
+  }
+}
+export {getRandomInteger,createRandomIdFromRangeGenerator,createRandomComment,onEscapePress};

@@ -1,4 +1,4 @@
-import {simularPictures} from './render.js';
+import {onEscapePress} from './util.js';
 
 const body = document.querySelector('body');
 const bigPicture = document.querySelector('.big-picture');
@@ -16,20 +16,13 @@ const commentsLoader = bigPicture.querySelector('.comments-loader');
 
 const closeButton = bigPicture.querySelector('.big-picture__cancel');
 
-const onDocumentKeydown = (evt) => {
-  if (evt.key === 'Escape'){
-    closeBigPicture();
-  }
-};
+const onDocumentKeydown = (evt) => onEscapePress(evt, closeBigPicture);
 
-const pictures = document.querySelectorAll('.picture');
-for(let i = 0;i < pictures.length;i++){
-  const picture = pictures[i];
+function renderBigPicture(picture,comments){
   picture.addEventListener('click', () =>{
     bigPicImg.src = picture.querySelector('.picture__img').src;
     likesCount.textContent = picture.querySelector('.picture__likes').textContent;
-    commentsCount.textContent = picture.querySelector('.picture__info').querySelector('.picture__comments').length;
-    const comments = simularPictures[i].comments;
+    commentsCount.textContent = comments.length;
     for(let j = 0; j < comments.length;j++){
       const comment = clone.cloneNode(true);
       comment.querySelector('.social__picture').src = comments[j].avatar;
@@ -54,8 +47,6 @@ function closeBigPicture(){
 
 closeButton.addEventListener('click',()=>closeBigPicture());
 
-document.addEventListener('keydown', (evt)=>{
-  if(evt.key === 'Escape'){
-    closeBigPicture();
-  }
-});
+document.addEventListener('keydown', onEscapePress(closeBigPicture));
+
+export {renderBigPicture};
