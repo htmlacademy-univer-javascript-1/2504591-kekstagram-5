@@ -1,2 +1,3 @@
-import {result} from './data.js';
-result();
+import {renderSimularPictures} from './render.js';
+renderSimularPictures();
+
