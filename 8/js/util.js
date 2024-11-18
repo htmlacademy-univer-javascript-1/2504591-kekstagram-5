@@ -53,4 +53,5 @@ function onEscapePress(evt, funcName){
     funcName();
   }
 }
+
 export {getRandomInteger,createRandomIdFromRangeGenerator,createRandomComment,onEscapePress};
