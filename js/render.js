@@ -3,7 +3,7 @@ import { renderBigPicture } from './big-picture.js';
 
 const pictureList = document.querySelector('.pictures');
 const pictureListFragment = document.createDocumentFragment();
-const templatePic = document.querySelector('#picture').content;
+const templatePic = document.querySelector('#picture').content.querySelector('.picture');
 const simularPictures = result();
 
 function fillPicture(picture) {
@@ -12,7 +12,7 @@ function fillPicture(picture) {
   generatePic.querySelector('.picture__img').alt = picture.description;
   generatePic.querySelector('.picture__comments').textContent = picture.comments.length;
   generatePic.querySelector('.picture__likes').textContent = picture.likes;
-  renderBigPicture(generatePic.querySelector('.picture'), picture.comments);
+  renderBigPicture(generatePic, picture.comments);
   return generatePic;
 }
 
