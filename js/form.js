@@ -1,5 +1,8 @@
 import { onEscapePress } from './util.js';
 
+const imgUpload = document.querySelector('.img-upload__preview');
+const scaleValue = document.querySelector('.scale__control--value');
+
 const file = document.querySelector('.img-upload__input');
 const overlay = document.querySelector('.img-upload__overlay');
 const body = document.querySelector('body');
@@ -48,6 +51,8 @@ function closeForm(){
   hashteg.value = '';
   description.value = '';
   pristine.reset();
+  imgUpload.style.transform = 'scale(1)';
+  scaleValue.value = '100%';
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
