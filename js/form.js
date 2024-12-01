@@ -1,4 +1,5 @@
 import { onEscapePress } from './util.js';
+import { showSuccess, showError } from './sendMessage.js';
 
 const imgUpload = document.querySelector('.img-upload__preview');
 const scaleValue = document.querySelector('.scale__control--value');
@@ -52,6 +53,8 @@ function closeForm(){
   description.value = '';
   pristine.reset();
   imgUpload.style.transform = 'scale(1)';
+  imgUpload.style.filter = '';
+  document.querySelector('.img-upload__effect-level').classList.add('hidden');
   scaleValue.value = '100%';
   document.removeEventListener('keydown', onDocumentKeydown);
 }
@@ -95,7 +98,24 @@ pristine.addValidator(description, validateDescription, 'Превышена дл
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
   if (pristine.validate()) {
-    form.submit();
+    const formData = new FormData(form);
+    fetch('https://29.javascript.htmlacademy.pro/kekstagram',
+      {
+        method: 'POST',
+        body: formData,
+      },
+    )
+      .then((post)=>{
+        if(!post.ok){
+          throw Error();
+        }
+        closeForm();
+        showSuccess();
+      })
+      .catch(()=>{
+        document.removeEventListener('keydown', onDocumentKeydown);
+        showError();
+      });
   }
 });
 
