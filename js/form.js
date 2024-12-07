@@ -1,5 +1,6 @@
 import { onEscapePress } from './util.js';
 import { showSuccess, showError } from './sendMessage.js';
+import {fentchData} from './api.js';
 
 const imgUpload = document.querySelector('.img-upload__preview');
 const scaleValue = document.querySelector('.scale__control--value');
@@ -95,28 +96,42 @@ function validateDescription(value){
 pristine.addValidator(hashteg,validateHashtag, () => errors[errorType]);
 pristine.addValidator(description, validateDescription, 'Превышена длинна комментария!');
 
+const thenFunc = () =>{
+  closeForm();
+  showSuccess();
+};
+
+const catchFunc = () =>{
+  document.removeEventListener('keydown', onDocumentKeydown);
+  showError();
+};
+
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
   if (pristine.validate()) {
     const formData = new FormData(form);
-    fetch('https://29.javascript.htmlacademy.pro/kekstagram',
-      {
-        method: 'POST',
-        body: formData,
-      },
-    )
-      .then((post)=>{
-        if(!post.ok){
-          throw Error();
-        }
-        closeForm();
-        showSuccess();
-      })
-      .catch(()=>{
-        document.removeEventListener('keydown', onDocumentKeydown);
-        showError();
-      });
+    fentchData('POST',formData,null,thenFunc,catchFunc);
   }
 });
 
 export {openForm};
+// function fentchData(formData) {
+//   fetch('https://29.javascript.htmlacademy.pro/kekstagram',
+//     {
+//       method: 'POST',
+//       body: formData,
+//     }
+//   )
+//     .then((post) => {
+//       if (!post.ok) {
+//         throw Error();
+//       }
+//       closeForm();
+//       showSuccess();
+//     })
+//     .catch(() => {
+//       document.removeEventListener('keydown', onDocumentKeydown);
+//       showError();
+//     });
+// }
+
