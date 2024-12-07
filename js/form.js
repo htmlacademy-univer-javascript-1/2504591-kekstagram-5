@@ -1,4 +1,6 @@
 import { onEscapePress } from './util.js';
+import { showSuccess, showError } from './sendMessage.js';
+import {fentchData} from './api.js';
 
 const imgUpload = document.querySelector('.img-upload__preview');
 const scaleValue = document.querySelector('.scale__control--value');
@@ -52,6 +54,8 @@ function closeForm(){
   description.value = '';
   pristine.reset();
   imgUpload.style.transform = 'scale(1)';
+  imgUpload.style.filter = '';
+  document.querySelector('.img-upload__effect-level').classList.add('hidden');
   scaleValue.value = '100%';
   document.removeEventListener('keydown', onDocumentKeydown);
 }
@@ -92,10 +96,21 @@ function validateDescription(value){
 pristine.addValidator(hashteg,validateHashtag, () => errors[errorType]);
 pristine.addValidator(description, validateDescription, 'Превышена длинна комментария!');
 
+const thenFunc = () =>{
+  closeForm();
+  showSuccess();
+};
+
+const catchFunc = () =>{
+  document.removeEventListener('keydown', onDocumentKeydown);
+  showError();
+};
+
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
   if (pristine.validate()) {
-    form.submit();
+    const formData = new FormData(form);
+    fentchData('POST',formData,null,thenFunc,catchFunc);
   }
 });
 

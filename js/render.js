@@ -1,10 +1,8 @@
-import {result} from './data.js';
 import { renderBigPicture } from './big-picture.js';
 
 const pictureList = document.querySelector('.pictures');
 const pictureListFragment = document.createDocumentFragment();
 const templatePic = document.querySelector('#picture').content.querySelector('.picture');
-const simularPictures = result();
 
 function fillPicture(picture) {
   const generatePic = templatePic.cloneNode(true);
@@ -16,8 +14,8 @@ function fillPicture(picture) {
   return generatePic;
 }
 
-const renderSimularPictures = function() {
-  simularPictures.forEach((picture) => {
+const renderSimularPictures = function(simularPicturesList) {
+  simularPicturesList.forEach((picture) => {
     const generatePic = fillPicture(picture);
     pictureListFragment.appendChild(generatePic);
   });
