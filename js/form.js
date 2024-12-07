@@ -115,23 +115,3 @@ form.addEventListener('submit', (evt) => {
 });
 
 export {openForm};
-// function fentchData(formData) {
-//   fetch('https://29.javascript.htmlacademy.pro/kekstagram',
-//     {
-//       method: 'POST',
-//       body: formData,
-//     }
-//   )
-//     .then((post) => {
-//       if (!post.ok) {
-//         throw Error();
-//       }
-//       closeForm();
-//       showSuccess();
-//     })
-//     .catch(() => {
-//       document.removeEventListener('keydown', onDocumentKeydown);
-//       showError();
-//     });
-// }
-
