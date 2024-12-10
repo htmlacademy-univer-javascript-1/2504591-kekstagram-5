@@ -1,5 +1,5 @@
 import { onEscapePress } from './util.js';
-import { showSuccess, showError } from './sendMessage.js';
+import { showSuccess, showError } from './send-message.js';
 import {fentchData} from './api.js';
 
 const imgUpload = document.querySelector('.img-upload__preview');
@@ -96,12 +96,12 @@ function validateDescription(value){
 pristine.addValidator(hashteg,validateHashtag, () => errors[errorType]);
 pristine.addValidator(description, validateDescription, 'Превышена длинна комментария!');
 
-const thenFunc = () =>{
+const onSuccess = () =>{
   closeForm();
   showSuccess();
 };
 
-const catchFunc = () =>{
+const onError = () =>{
   document.removeEventListener('keydown', onDocumentKeydown);
   showError();
 };
@@ -110,7 +110,7 @@ form.addEventListener('submit', (evt) => {
   evt.preventDefault();
   if (pristine.validate()) {
     const formData = new FormData(form);
-    fentchData('POST',formData,null,thenFunc,catchFunc);
+    fentchData('POST',onSuccess,onError,formData);
   }
 });
 

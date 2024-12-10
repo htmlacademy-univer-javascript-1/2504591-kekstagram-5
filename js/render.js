@@ -1,8 +1,19 @@
 import { renderBigPicture } from './big-picture.js';
+import { onfilterClick } from './filters.js';
 
-const pictureList = document.querySelector('.pictures');
-const pictureListFragment = document.createDocumentFragment();
+const pictureSection = document.querySelector('.pictures');
 const templatePic = document.querySelector('#picture').content.querySelector('.picture');
+let pictureListFragment = document.createDocumentFragment();
+let defaultPictures = '';
+
+function updatePictureList(picturesList) {
+  if (defaultPictures === '') {
+    defaultPictures = picturesList;
+  } else {
+    pictureSection.querySelectorAll('.picture').forEach((el) => (el.remove()));
+    pictureListFragment = document.createDocumentFragment();
+  }
+}
 
 function fillPicture(picture) {
   const generatePic = templatePic.cloneNode(true);
@@ -14,14 +25,24 @@ function fillPicture(picture) {
   return generatePic;
 }
 
-const renderSimularPictures = function(simularPicturesList) {
-  simularPicturesList.forEach((picture) => {
+const renderPictures = function(picturesList) {
+  updatePictureList(picturesList);
+
+  picturesList.forEach((picture) => {
     const generatePic = fillPicture(picture);
     pictureListFragment.appendChild(generatePic);
   });
-  pictureList.appendChild(pictureListFragment);
+
+  pictureSection.appendChild(pictureListFragment);
+  document.querySelector('.img-filters').classList.remove('img-filters--inactive');
 };
 
-export {renderSimularPictures};
+const filterRandom = document.querySelector('#filter-random');
+const filterDiscussed = document.querySelector('#filter-discussed');
+const filterDefault = document.querySelector('#filter-default');
 
+onfilterClick(filterDefault);
+onfilterClick(filterDiscussed);
+onfilterClick(filterRandom);
 
+export {renderPictures,defaultPictures};
