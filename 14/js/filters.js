@@ -1,19 +1,9 @@
-import { defaultPictures, renderPictures } from './render.js';
+import { defaultPictures } from './render.js';
 
 const ACTIVE_CLASS = 'img-filters__button--active';
 
 const filterRandom = document.querySelector('#filter-random');
 const filterDiscussed = document.querySelector('#filter-discussed');
-
-function onfilterClick(filterButton) {
-  filterButton.addEventListener('click', () => {
-    document.querySelector('.img-filters__button--active').classList.remove(ACTIVE_CLASS);
-    filterButton.classList.add(ACTIVE_CLASS);
-    if (defaultPictures !== '') {
-      renderPictures(filterPictures(defaultPictures));
-    }
-  });
-}
 
 function shuffleArray(array) {
   const length = array.length;
@@ -40,4 +30,4 @@ function filterPictures(pictureArray) {
   return defaultPictures;
 }
 
-export{onfilterClick};
+export{filterPictures};
