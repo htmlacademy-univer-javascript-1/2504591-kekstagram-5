@@ -1,5 +1,6 @@
 import { renderBigPicture } from './big-picture.js';
 import { onfilterClick } from './filters.js';
+import { debounce } from './util.js';
 
 const pictureSection = document.querySelector('.pictures');
 const templatePic = document.querySelector('#picture').content.querySelector('.picture');
@@ -41,8 +42,10 @@ const filterRandom = document.querySelector('#filter-random');
 const filterDiscussed = document.querySelector('#filter-discussed');
 const filterDefault = document.querySelector('#filter-default');
 
-onfilterClick(filterDefault);
-onfilterClick(filterDiscussed);
-onfilterClick(filterRandom);
+const debouncedOnfilterClick = debounce(onfilterClick);
+
+debouncedOnfilterClick(filterDefault);
+debouncedOnfilterClick(filterDiscussed);
+debouncedOnfilterClick(filterRandom);
 
 export {renderPictures,defaultPictures};
