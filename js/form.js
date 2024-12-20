@@ -38,6 +38,24 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
+const imgPreview = imgUpload.querySelector('img');
+
+file.addEventListener('change', () => {
+  const fileReader = new FileReader();
+  const selectedFile = file.files[0];
+
+  fileReader.addEventListener('load', () => {
+    imgPreview.src = fileReader.result;
+    overlay.classList.remove('hidden');
+    body.classList.add('modal-open');
+    document.addEventListener('keydown', onDocumentKeydown);
+  });
+
+  if (selectedFile) {
+    fileReader.readAsDataURL(selectedFile);
+  }
+});
+
 function openForm(){
   file.addEventListener('change', () => {
     overlay.classList.remove('hidden');
