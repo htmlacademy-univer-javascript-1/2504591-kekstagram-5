@@ -1,4 +1,4 @@
-const https = {
+const HTTPS = {
   'GET':'https://29.javascript.htmlacademy.pro/kekstagram/data',
   'POST':'https://29.javascript.htmlacademy.pro/kekstagram'
 };
@@ -21,7 +21,7 @@ function createErrorDiv(error) {
 
 function fentchData(method,onSuccess, onError = createErrorDiv, formData){
   fetch(
-    https[method],
+    HTTPS[method],
     {
       method:method,
       body: formData,
