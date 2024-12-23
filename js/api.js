@@ -1,10 +1,11 @@
 const HTTPS = {
   'GET':'https://29.javascript.htmlacademy.pro/kekstagram/data',
-  'POST':'https://29.javascript.htmlacademy.pro/kekstagram'
+  'POST':'https://29.javascript.htmlacademy.pro/kekstagram/'
 };
 
 function createErrorDiv(error) {
   const errorDiv = document.createElement('div');
+  errorDiv.classList.add('data-error');
   errorDiv.style.color = 'red';
   errorDiv.style.fontWeight = 'bold';
   errorDiv.style.position = 'fixed';
@@ -18,6 +19,7 @@ function createErrorDiv(error) {
   errorDiv.style.textAlign = 'center';
   document.body.appendChild(errorDiv);
 }
+
 
 function fentchData(method,onSuccess, onError = createErrorDiv, formData){
   fetch(
