@@ -30,4 +30,4 @@ function shuffleArray(array) {
   return shuffle.slice(0, SHUFFLE_LIMIT);
 }
 
-export {onEscapePress, debounce, shuffleArray};
+export { onEscapePress, debounce, shuffleArray };
