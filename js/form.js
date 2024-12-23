@@ -1,6 +1,6 @@
 import { onEscapePress } from './util.js';
 import { showSuccess, showError } from './send-message.js';
-import {fentchData} from './api.js';
+import { fentchData } from './api.js';
 
 const MAX_HASHTAG_COUNT = 5;
 const MAX_DESC_LEC = 140;
